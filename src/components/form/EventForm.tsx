@@ -22,7 +22,6 @@ import { Button } from "@/components/ui/button";
 import { Baby, Users, RefreshCw } from "lucide-react";
 import type { ScheduleEvent } from "@/utils/schema/schedule";
 import { toLocalDatetimeString } from "@/utils/dateUtils";
-import { useRelationships } from "@/hooks/useRelationships";
 
 export const eventSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -59,7 +58,7 @@ export default function EventForm({
   initialStartTime,
   initialEndTime,
 }: EventFormProps) {
-  const { adultData = [], childData = [] } = useRelationships();
+
   const form = useForm<EventFormData>({
     resolver: zodResolver(eventSchema),
     defaultValues: {
@@ -258,104 +257,9 @@ export default function EventForm({
         )}
       />
 
-      <FormField
-        control={form.control}
-        name="children_involved"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel className="flex items-center space-x-2">
-              <Baby className="h-4 w-4" />
-              <span>Children Involved</span>
-            </FormLabel>
-            <div className="space-y-2">
-              {childData.length > 0 ? (
-                <div className="grid grid-cols-1 gap-2">
-                  {childData.map((child) => {
-                    const name = [child.first_name, child.last_name]
-                      .filter(Boolean)
-                      .join(" ") || `Child ${child.id}`;
-                    return (
-                      <div
-                        key={child.id}
-                        className="flex items-center space-x-2 p-1 rounded-md hover:bg-gray-50"
-                      >
-                        <input
-                          type="checkbox"
-                          id={`child-${child.id}`}
-                          checked={field.value.includes(child.id.toString())}
-                          onChange={(e) => {
-                            const childId = child.id.toString();
-                            if (e.target.checked) {
-                              field.onChange([...field.value, childId]);
-                            } else {
-                              field.onChange(field.value.filter((id: string) => id !== childId));
-                            }
-                          }}
-                          className="rounded border-gray-300 text-[#275559] focus:ring-[#275559]"
-                        />
-                        <label htmlFor={`child-${child.id}`} className="text-sm font-medium">
-                          {name}
-                          {child.grade && (
-                            <span className="text-gray-500 ml-1">(Grade {child.grade})</span>
-                          )}
-                        </label>
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <p className="text-sm text-gray-500">No children found. Add children in your profile first.</p>
-              )}
-            </div>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
+    
 
-      <FormField
-        control={form.control}
-        name="participants"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel className="flex items-center space-x-2">
-              <Users className="h-4 w-4" />
-              <span>Invite Adults</span>
-            </FormLabel>
-            <div className="space-y-2">
-              {adultData.length > 0 ? (
-                <div className="grid grid-cols-1 gap-2">
-                  {adultData.map((adult) => (
-                    <div key={adult.id} className="flex items-center space-x-2">
-                      <input
-                        type="checkbox"
-                        id={`adult-${adult.id}`}
-                        checked={field.value.includes(adult.id.toString())}
-                        onChange={(e) => {
-                          const adultId = adult.id.toString();
-                          if (e.target.checked) {
-                            field.onChange([...field.value, adultId]);
-                          } else {
-                            field.onChange(field.value.filter((id: string) => id !== adultId));
-                          }
-                        }}
-                        className="rounded border-gray-300 text-[#275559] focus:ring-[#275559]"
-                      />
-                      <label htmlFor={`adult-${adult.id}`} className="text-sm font-medium">
-                        {adult.name}
-                        {adult.relationship && <span className="text-gray-500 ml-1">({adult.relationship})</span>}
-                        {adult.email && <span className="text-gray-400 ml-2 text-xs">{adult.email}</span>}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-sm text-gray-500">No adults found. Add co-parents or guardians in your profile first.</p>
-              )}
-            </div>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
+      
 
       <div className="flex justify-end space-x-3 pt-4">
         <Button

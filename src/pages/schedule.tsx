@@ -17,7 +17,6 @@ import { type EventFormData } from "@/components/form/EventForm";
 import EventDialog from "@/components/dialog/EventDialog";
 import type { ScheduleEvent } from "@/utils/schema/schedule";
 import { toLocalDatetimeString } from "@/utils/dateUtils";
-import PendingTasks from "@/components/PendingTasks";
 import { ScheduleContext } from '@/contexts/ScheduleProvider';
 
 export default function SchedulePage() {
@@ -201,7 +200,6 @@ export default function SchedulePage() {
             />
           )}
           {view === "agenda" && <AgendaView />}
-          {view === "tasks" && <PendingTasks />}
           </div>
         </div>
       </CollapsibleSidebarLayout>

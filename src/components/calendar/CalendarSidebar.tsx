@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import {Ellipsis, Eye, EyeClosed, EyeOff, PanelLeftDashed, Plus, Search, Settings} from "lucide-react";
 import { ScheduleContext } from '@/contexts/ScheduleProvider';
 import {ChangeEvent, useState} from "react";
-import { useRelationships } from '@/hooks/useRelationships';
 
 import { cn } from "@/lib/utils";
 
@@ -24,7 +23,6 @@ export default function CalendarSidebar({onAddEvent, className, view}: CalendarS
         currentDate,
         setCurrentDate,
     } = useContext(ScheduleContext);
-    const {childData = []} = useRelationships();
     const [sideBarVisible, setSideBarVisible] = useState(true);
     const [toggleAllCalendarTabs, setToggleAllCalendarTabs] = useState(true);
     const [isAddEventOpen, setIsAddEventOpen] = useState(false);
@@ -36,7 +34,6 @@ export default function CalendarSidebar({onAddEvent, className, view}: CalendarS
 
     const checkAll = () => {
         setVisibleCalendarIds(calendars.map((c) => c.id));
-        setVisibleChildIds(childData.map((c) => c.id.toString()));
     };
 
     const uncheckAll = () => {
@@ -63,15 +60,7 @@ export default function CalendarSidebar({onAddEvent, className, view}: CalendarS
             type: "calendar" as const,
             color: c.backgroundColor,
         })),
-        ...childData.map((child) => ({
-            id: child.id.toString(),
-            name:
-                [child.first_name, child.last_name].filter(Boolean).join(" ") ||
-                (child as any).name ||
-                `Child ${child.id}`,
-            type: "child" as const,
-            color: child.color,
-        })),
+      
     ];
 
     return (

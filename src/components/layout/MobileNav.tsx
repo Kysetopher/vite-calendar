@@ -1,7 +1,6 @@
 // MobileNav.tsx (simplified)
 import React, { useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import ProfileNavigation from "@/components/ProfileNavigation";
 import { NAV_ITEMS } from "@/lib/navigation";
 
 export default function MobileNav() {
@@ -72,9 +71,6 @@ export default function MobileNav() {
           </Link>
         );})}
 
-        <div className="sm:hidden ml-auto flex items-center pr-2">
-          <ProfileNavigation direction="up" />
-        </div>
       </div>
     </nav>
   );

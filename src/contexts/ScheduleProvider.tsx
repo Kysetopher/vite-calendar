@@ -8,8 +8,6 @@ import React, {
   useEffect,
 } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useAuth } from '../hooks/useAuth';
-import { useRelationships } from '../hooks/useRelationships';
 import { apiRequest } from '../lib/queryClient';
 import { normalizeScheduleEvents, filterEvents } from '../utils/eventUtils';
 import type { ScheduleEvent, CalendarSyncSetting } from "@/utils/schema/schedule";
@@ -74,8 +72,6 @@ export const ScheduleContext = createContext<ScheduleContextValue>({
 
 export function ScheduleProvider({ children }: { children: ReactNode }) {
 
-  const { isAuthenticated, profile, user } = useAuth();
-  const { childData } = useRelationships();
   const [visibleCalendarIds, setVisibleCalendarIds] = useState<string[]>(['liaizen-shared']);
   const [visibleChildIds, setVisibleChildIds] = useState<string[]>([]);
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
@@ -87,7 +83,6 @@ export function ScheduleProvider({ children }: { children: ReactNode }) {
     refetch: refetchEvents,
   } = useQuery<ScheduleEvent[]>({
     queryKey: ['/api/schedule/events'],
-    enabled: isAuthenticated,
     select: normalizeScheduleEvents,
   });
 
@@ -97,7 +92,6 @@ export function ScheduleProvider({ children }: { children: ReactNode }) {
     refetch: refetchSyncSettings,
   } = useQuery<CalendarSyncSetting>({
     queryKey: ['/api/calendar/sync-settings'],
-    enabled: isAuthenticated,
   });
 
   const {
@@ -106,7 +100,6 @@ export function ScheduleProvider({ children }: { children: ReactNode }) {
     refetch: refetchProviders,
   } = useQuery<string[]>({
     queryKey: ['/api/calendar/providers'],
-    enabled: isAuthenticated,
   });
  
   const {
@@ -115,8 +108,7 @@ export function ScheduleProvider({ children }: { children: ReactNode }) {
     refetch: refetchCalendars,
   } = useQuery<CalendarItem[]>({
     queryKey: ['/api/calendar/google-calendars'],
-    // Only fetch if authenticated AND has calendar linked
-    enabled: isAuthenticated && user?.calendar_linked === true,
+
     queryFn: async () => {
       try {
         return (await apiRequest('GET', '/api/calendar/google-calendars')) as CalendarItem[];
@@ -129,14 +121,6 @@ export function ScheduleProvider({ children }: { children: ReactNode }) {
         throw error;
       }
     },
-    select: (cals) =>
-      profile
-        ? cals.map((cal) =>
-            cal.id === profile.email
-              ? { ...cal, name: 'Private Calendar' }
-              : cal,
-          )
-        : cals,
   });
 
 
@@ -153,14 +137,12 @@ export function ScheduleProvider({ children }: { children: ReactNode }) {
         events as any[],
         visibleCalendarIds,
         visibleChildIds,
-        childData,
         googleCalendars,
       ),
     [
       events,
       visibleCalendarIds,
       visibleChildIds,
-      childData,
       googleCalendars,
     ],
   );

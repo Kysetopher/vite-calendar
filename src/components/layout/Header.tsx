@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { isActivePath } from "@/lib/navigation";
 import liaizenLogo from "@assets/liaizen-logo.svg";
-import ProfileNavigation from "@/components/ProfileNavigation"; 
 import { NAV_ITEMS } from "@/lib/navigation";
 
 export default function Header() {
@@ -66,10 +65,7 @@ export default function Header() {
             })}
           </nav>
 
-          {/* right (profile) */}
-          <div className="w-80 justify-end flex items-center space-x-4">
-            <ProfileNavigation/>
-          </div>
+
         </div>
       </div>
     </header>
