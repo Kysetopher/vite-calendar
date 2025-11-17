@@ -1,13 +1,10 @@
-import {Fragment, useEffect, useState, useContext, useRef} from "react";
+import { useEffect, useState, useContext, useRef} from "react";
 import {addDays, startOfWeek, format, subDays} from "date-fns";
-import SimpleBar from "simplebar-react";
+
 import "simplebar-react/dist/simplebar.min.css";
 import { Card } from "@/components/ui/card";
 import { ScheduleContext } from '@/contexts/ScheduleProvider';
-import { getTextColor } from "@/utils/color";
 import type { CalendarEvent } from "@/utils/schema/schedule";
-
-import CurrentTimeIndicator from "@/components/calendar/CurrentTimeIndicator.tsx";
 import WeekView from "@/components/calendar/WeekView.tsx";
 import {useSwipe} from "@/hooks/useSwipe.ts";
 

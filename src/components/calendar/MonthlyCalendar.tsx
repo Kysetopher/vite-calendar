@@ -10,7 +10,6 @@ import SimpleBar from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
 import { addMonths, startOfMonth } from "date-fns";
 import { ScheduleContext } from '@/contexts/ScheduleProvider';
-import { getTextColor } from "@/utils/color";
 import { Card } from "@/components/ui/card";
 import type { CalendarEvent } from "@/utils/schema/schedule";
 

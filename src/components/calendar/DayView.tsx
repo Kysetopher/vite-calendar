@@ -1,10 +1,6 @@
-import { useContext, useEffect, useState, Fragment, useRef } from "react";
-import { format, addDays, subDays } from "date-fns";
-import SimpleBar from "simplebar-react";
+import {  useEffect, useState, Fragment, } from "react";
+import { format} from "date-fns";
 import "simplebar-react/dist/simplebar.min.css";
-import { Card } from "@/components/ui/card";
-import { getTextColor } from "@/utils/color";
-import { ScheduleContext } from '@/contexts/ScheduleProvider';
 import type { CalendarEvent } from "@/utils/schema/schedule";
 import CurrentTimeIndicator from "@/components/calendar/CurrentTimeIndicator.tsx";
 
