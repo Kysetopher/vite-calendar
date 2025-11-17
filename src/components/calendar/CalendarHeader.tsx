@@ -73,7 +73,6 @@ export default function CalendarHeader({ setCollapsed, selectedDate, view, onPre
               <SelectItem value={"week"}>Week</SelectItem>
               <SelectItem value={"month"}>Month</SelectItem>
               <SelectItem value={"agenda"}>Agenda</SelectItem>
-              <SelectItem value={"tasks"}>Tasks</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -86,7 +85,6 @@ export default function CalendarHeader({ setCollapsed, selectedDate, view, onPre
               <TabsTrigger value="week">Week</TabsTrigger>
               <TabsTrigger value="month">Month</TabsTrigger>
               <TabsTrigger value="agenda">Agenda</TabsTrigger>
-              <TabsTrigger value="tasks">Tasks</TabsTrigger>
             </TabsList>
           </Tabs>
         </div>
