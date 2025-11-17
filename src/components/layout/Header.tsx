@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { isActivePath } from "@/lib/navigation";
-import liaizenLogo from "@assets/liaizen-logo.svg";
+import Logo from "@assets/logo.svg";
 import { NAV_ITEMS } from "@/lib/navigation";
 
 export default function Header() {
@@ -29,15 +29,15 @@ export default function Header() {
           {/* left */}
           <div className="w-80 flex justify-start">
             <a
-              href="https://liaizen.com/"
+              href="https://kyser.ai/"
               target="_blank"
               rel="noreferrer"
               className="flex w-fit px-4"
             >
               <div className="flex w-fit gap-3 items-center">
-                <img src={liaizenLogo} alt="LiaiZen Logo" className="w-8 h-8 rounded-lg" />
+                <img src={Logo} alt="LiaiZen Logo" className="w-8 h-8 rounded-lg" />
                 <span className="text-xl font-serif font-semibold text-gray-900 block lg:hidden xl:block">
-                  LiaiZen
+                  Logo
                 </span>
               </div>
             </a>
