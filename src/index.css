@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(210, 40%, 98%);
+  --muted-foreground: hsl(215, 13.8%, 34.1%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(214.3, 31.8%, 91.4%);
+  --input: hsl(214.3, 31.8%, 91.4%);
+  --primary: hsl(185, 34%, 50%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(185, 34%, 94%);
+  --secondary-foreground: hsl(185, 34%, 25%);
+  --accent: hsl(185, 34%, 94%);
+  --accent-foreground: hsl(185, 34%, 25%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(185, 34%, 50%);
+  --radius: 0.75rem;
+  
+  /* Custom LiaiZen Theme Colors */
+  --liaizen-primary: hsl(190, 38%, 25%);
+  --liaizen-primary-foreground: hsl(0, 0%, 100%);
+  --liaizen-secondary: hsl(142.1, 76.2%, 36.3%);
+  --liaizen-secondary-foreground: hsl(355.7, 100%, 97.3%);
+  --liaizen-accent: hsl(32.9, 100%, 50%);
+  --liaizen-accent-foreground: hsl(355.7, 100%, 97.3%);
+  --liaizen-success: hsl(190, 38%, 25%);
+  --liaizen-warning: hsl(32.9, 100%, 50%);
+  --liaizen-error: hsl(0, 84.2%, 60.2%);
+  
+  /* Soft, calming background colors with LiaiZen primary */
+  --liaizen-bg-primary: hsl(190, 35%, 97%);
+  --liaizen-bg-secondary: hsl(138, 50%, 97%);
+  --liaizen-bg-accent: hsl(33, 100%, 97%);
+}
+
+/* Mobile-First Responsive Design */
+
+/* Base mobile styles */
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Mobile form elements */
+input, textarea, select {
+  font-size: 16px; /* Prevents zoom on iOS */
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+    box-sizing: border-box;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+  }
+
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lora', serif;
+    margin: 0;
+    padding: 0;
+  }
+
+}
+
+/* Custom component styles for LiaiZen theme */
+/* Removed custom shadow and gradient classes in favor of Tailwind utilities */
+
+/* Custom scrollbar styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: hsl(210, 40%, 96%);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(215, 13.8%, 34.1%);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(221.2, 83.2%, 53.3%);
+}
+
+/* Calendar event indicator */
+.rdp-day_hasEvent:not(.rdp-day_selected):not(.rdp-day_disabled) {
+  position: relative;
+}
+.rdp-day_hasEvent:not(.rdp-day_selected):not(.rdp-day_disabled)::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  background-color: #275559;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.selected-period:not(.day-outside) {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border-radius: 0;
+}
+
+.selected-period.day-outside {
+  background-color: #f1f5f9;
+  color: #94a3b8;
+  border-radius: 0;
+}
+
+.rdp-day_selected.selected-period {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.rdp-day_today.selected-period:not(.day-outside) {
+    background-color: hsl(var(--primary)) !important;
+    color: hsl(var(--primary-foreground)) !important;
+}
+
+.selected-period.selected-period-start {
+    border-top-left-radius: var(--radius);
+    border-bottom-left-radius: var(--radius);
+}
+
+.selected-period.selected-period-end {
+    border-top-right-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
+}
+
+/* globals.css */
+html, body, #__next, #root { height: 100%; }
+html, body {
+  overscroll-behavior: none; /* stop browser "helpful" nudges */
+  overflow-anchor: none;     /* prevent scroll anchoring jumps */
+}
+/* your page scrollers can add this attribute for clarity */
+[data-page-scroller] { overflow-anchor: none; }
