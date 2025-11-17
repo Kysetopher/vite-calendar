@@ -82,7 +82,7 @@ export default function MonthlyCalendar({
 }: MonthlyCalendarProps) {
   const { filteredEvents: events, currentDate, setCurrentDate } = useContext(ScheduleContext);
 
-  const simpleBarRef = useRef<SimpleBar | null>(null);
+  const simpleBarRef = useRef<typeof SimpleBar | null>(null);
   const monthRefs = useRef<Map<string, HTMLDivElement>>(new Map());
   const resetScrollRef = useRef(false);
   const lastReportedRef = useRef<string>();
