@@ -11,7 +11,6 @@ import CalendarHeader from "@/components/calendar/CalendarHeader";
 import CalendarSidebar from "@/components/calendar/CalendarSidebar";
 import CollapsibleSidebarLayout from "@/components/layout/CollapsibleSidebarLayout";
 import CalendarSettingsDialog from "@/components/dialog/CalendarSettingsDialog";
-import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { isUnauthorizedError } from "@/lib/authUtils";
 import { type EventFormData } from "@/components/form/EventForm";
@@ -22,7 +21,6 @@ import PendingTasks from "@/components/PendingTasks";
 import { ScheduleContext } from '@/contexts/ScheduleProvider';
 
 export default function SchedulePage() {
-  const { isAuthenticated } = useAuth();
   const { toast } = useToast();
   const {
     isLoading,
