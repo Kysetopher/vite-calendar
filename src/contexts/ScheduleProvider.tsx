@@ -11,7 +11,7 @@ import { useQuery } from '@tanstack/react-query';
 import { apiRequest } from '../lib/queryClient';
 import { normalizeScheduleEvents, filterEvents } from '../utils/eventUtils';
 import type { ScheduleEvent, CalendarSyncSetting } from "@/utils/schema/schedule";
-import type { EventFormData } from '../components/form/EventForm';
+import type { EventFormData } from '../components/dialog/EventForm';
 
 
 interface CalendarItem {

@@ -1,4 +1,4 @@
-import EventForm, { type EventFormData } from "@/components/form/EventForm";
+import EventForm, { type EventFormData } from "@/components/dialog/EventForm";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import type { ScheduleEvent } from "@/utils/schema/schedule";
 

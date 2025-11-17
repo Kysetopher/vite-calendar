@@ -13,7 +13,7 @@ import CollapsibleSidebarLayout from "@/components/layout/CollapsibleSidebarLayo
 import CalendarSettingsDialog from "@/components/dialog/CalendarSettingsDialog";
 import { useToast } from "@/hooks/use-toast";
 import { isUnauthorizedError } from "@/lib/authUtils";
-import { type EventFormData } from "@/components/form/EventForm";
+import { type EventFormData } from "@/components/dialog/EventForm";
 import EventDialog from "@/components/dialog/EventDialog";
 import type { ScheduleEvent } from "@/utils/schema/schedule";
 import { toLocalDatetimeString } from "@/utils/dateUtils";
